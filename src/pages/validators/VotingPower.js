@@ -14,14 +14,14 @@ const VotingPower = () => {
 
 
         axios
-            .get("http://139.59.67.100:1317/validatorsets/latest")
+            .get("https://api.testnet.agoric.aneka.io/validators")
             .then(res => {
                 console.log(res);
-                for (const dataObj of res.data.result.validators) {
+                for (const dataObj of res.data.data.validators) {
                     combinedArray.push(
                         {
                             value: (dataObj.voting_power),
-                            key: (dataObj.address)
+                            key: (dataObj.description.moniker)
                         }
                     )
                     //sorting in descending order
@@ -30,7 +30,7 @@ const VotingPower = () => {
                 }
                 //
                 combinedArray = combinedArray.sort(function (a, b) {
-                    return a.value - b.value})
+                    return b.value - a.value})
                 newCombinedArray = combinedArray.slice(0, 10)
 
                 for (const dataObj of newCombinedArray) {

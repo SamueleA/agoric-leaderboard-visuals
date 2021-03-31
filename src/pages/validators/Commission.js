@@ -13,10 +13,10 @@ const Commission = () => {
 
 
         axios
-            .get("http://139.59.67.100:1317/cosmos/staking/v1beta1/validators")
+            .get("https://api.testnet.agoric.aneka.io/validators")
             .then(res => {
                 console.log(res);
-                for (const dataObj of res.data.validators) {
+                for (const dataObj of res.data.data.validators) {
                     combinedArray.push(
                         {
                             commission: (dataObj.commission.commission_rates.rate),

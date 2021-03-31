@@ -13,14 +13,14 @@ const ProsperityPriority = () => {
 
 
         axios
-            .get("http://139.59.67.100:1317/validatorsets/latest")
+            .get("https://api.testnet.agoric.aneka.io/validators")
             .then(res => {
                 console.log(res);
-                for (const dataObj of res.data.result.validators) {
+                for (const dataObj of res.data.data.validators) {
                     combinedArray.push(
                         {
                             value: (dataObj.proposer_priority),
-                            key: (dataObj.address)
+                            key: (dataObj.description.moniker)
                         }
                     )
                     //sorting in descending order
